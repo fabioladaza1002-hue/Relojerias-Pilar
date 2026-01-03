@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PILAR: La Elegancia en tu Muñeca</title>
+    <meta name="description" content="Descubre PILAR, relojes de lujo que fusionan arte, precisión y pasión. Diseño ultra-premium con envío seguro y garantía de calidad.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --color-background: #121212;
+            --color-text-primary: #E0E0E0;
+            --color-accent-gold: #B8860B; /* Oro Rosado/Viejo */
+            --color-card-background: rgba(40, 40, 40, 0.7); /* Para glassmorphism */
+            --color-card-border: rgba(184, 134, 11, 0.3);
+            --font-display: 'Playfair Display', serif;
+            --font-body: 'Montserrat', sans-serif;
+            --transition-speed: 0.3s ease-in-out;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-body);
+            color: var(--color-text-primary);
+            background-color: var(--color-background);
+            line-height: 1.6;
+            overflow-x: hidden; /* Evita scroll horizontal indeseado */
+        }
+
+        /* --- Header / Navegación --- */
+        header {
+            background-color: rgba(18, 18, 18, 0.8);
+            backdrop-filter: blur(10px);
+            padding: 1.5rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+            transition: background-color var(--transition-speed);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: var(--font-display);
+            font-size: 2.2rem;
+            color: var(--color-accent-gold);
+            text-decoration: none;
+            font-weight: 700;
+            letter-spacing: 2px;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+        }
+
+        .nav-links a {
+            color: var(--color-text-primary);
+            text-decoration: none;
+            margin-left: 2.5rem;
+            font-weight: 600;
+            font-size: 1.1rem;
+            position: relative;
+            transition: color var(--transition-speed);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background-color: var(--color-accent-gold);
+            bottom: -5px;
+            left: 0;
+            transition: width var(--transition-speed);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        .nav-links a:hover {
+            color: var(--color-accent-gold);
+        }
+
+
+        /* --- Hero Section --- */
+        .hero {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+            background: url('reloj6.jpg') no-repeat center center/cover; /* Imagen de fondo */
+            background-attachment: fixed; /* Efecto Parallax */
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.8));
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 900px;
+            animation: fadeInScale 1.5s ease-out forwards;
+        }
+
+        .hero-content h1 {
+            font-family: var(--font-display);
+            font-size: 5rem;
+            margin-bottom: 1rem;
+            line-height: 1.1;
+            letter-spacing: 3px;
+            text-shadow: 0 5px 15px rgba(0, 0, 0, 0.7);
+        }
+
+        .hero-content p {
+            font-size: 1.5rem;
+            margin-bottom: 2.5rem;
+            font-weight: 400;
+            letter-spacing: 1px;
+            animation: fadeIn 2s ease-out forwards;
+            animation-delay: 0.5s;
+            opacity: 0;
+        }
+
+        .btn-primary {
+            display: inline-block;
+            background: linear-gradient(45deg, var(--color-accent-gold), darken(var(--color-accent-gold), 15%));
+            color: white;
+            padding: 1rem 2.5rem;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 600;
+            font-size: 1.2rem;
+            letter-spacing: 1px;
+            box-shadow: 0 8px 20px rgba(184, 134, 11, 0.4);
+            transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+            animation: fadeIn 2s ease-out forwards;
+            animation-delay: 1s;
+            opacity: 0;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 12px 25px rgba(184, 134, 11, 0.6);
+            background: linear-gradient(45deg, lighten(var(--color-accent-gold), 10%), var(--color-accent-gold));
+        }
+
+        /* --- Secciones Generales --- */
+        section {
+            padding: 8rem 0;
+        }
+
+        .section-title {
+            font-family: var(--font-display);
+            font-size: 3.5rem;
+            text-align: center;
+            margin-bottom: 4rem;
+            color: var(--color-accent-gold);
+            position: relative;
+            animation: slideInUp 1s ease-out forwards;
+            opacity: 0;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            bottom: -15px;
+            width: 80px;
+            height: 3px;
+            background-color: var(--color-text-primary);
+            border-radius: 2px;
+        }
+
+        /* --- Productos --- */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+        }
+
+        .product-card {
+            background: var(--color-card-background); /* Glassmorphism base */
+            border: 1px solid var(--color-card-border);
+            backdrop-filter: blur(15px); /* Efecto de desenfoque del fondo */
+            border-radius: 15px;
+            overflow: hidden;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+            transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+            position: relative;
+            will-change: transform; /* Para optimización de animación */
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px) scale(1.03);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+            display: block;
+            transition: transform var(--transition-speed);
+            position: relative;
+            z-index: 1;
+        }
+
+        .product-card:hover .product-image {
+            transform: scale(1.1);
+        }
+
+        .product-info {
+            padding: 2rem 1.5rem;
+            position: relative;
+            z-index: 2; /* Asegura que la info esté sobre el glassmorphism */
+        }
+
+        .product-info h3 {
+            font-family: var(--font-display);
+            font-size: 1.8rem;
+            margin-bottom: 0.8rem;
+            color: var(--color-accent-gold);
+        }
+
+        .product-info .price {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--color-text-primary);
+            margin-bottom: 1.5rem;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-buy-whatsapp {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #25D366; /* WhatsApp Green */
+            color: white;
+            padding: 0.8rem 1.5rem;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: background-color var(--transition-speed), transform var(--transition-speed);
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+        }
+
+        .btn-buy-whatsapp i {
+            margin-right: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .btn-buy-whatsapp:hover {
+            background-color: #1DA851;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.6);
+        }
+
+        /* --- Acerca de Nosotros / Confianza --- */
+        .about-us-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            text-align: center;
+        }
+
+        .about-item {
+            padding: 2.5rem;
+            border: 1px solid var(--color-card-border);
+            border-radius: 15px;
+            background: var(--color-card-background);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+            transition: transform var(--transition-speed);
+        }
+        .about-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .about-item i {
+            font-size: 3rem;
+            color: var(--color-accent-gold);
+            margin-bottom: 1.5rem;
+        }
+
+        .about-item h3 {
+            font-family: var(--font-display);
+            font-size: 1.8rem;
+            color: var(--color-text-primary);
+            margin-bottom: 1rem;
+        }
+
+        .about-item p {
+            font-size: 1rem;
+            color: var(--color-text-primary);
+            opacity: 0.9;
+        }
+
+        /* --- Footer --- */
+        footer {
+            background-color: #0d0d0d;
+            color: var(--color-text-primary);
+            text-align: center;
+            padding: 3rem 0;
+            border-top: 1px solid rgba(184, 134, 11, 0.2);
+            font-size: 0.95rem;
+        }
+
+        .social-links {
+            margin-top: 1.5rem;
+        }
+
+        .social-links a {
+            color: var(--color-text-primary);
+            font-size: 1.8rem;
+            margin: 0 1rem;
+            transition: color var(--transition-speed), transform var(--transition-speed);
+        }
+
+        .social-links a:hover {
+            color: var(--color-accent-gold);
+            transform: scale(1.2);
+        }
+
+        /* --- WhatsApp Floating Button --- */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: #25D366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 2rem;
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.5);
+            z-index: 1001;
+            transition: transform 0.2s ease-in-out;
+            animation: pulse 2s infinite;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+        }
+
+        /* --- Keyframe Animations --- */
+        @keyframes fadeInScale {
+            from {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+            70% { transform: scale(1.05); box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+        }
+
+        /* --- Responsive Design --- */
+        @media (max-width: 992px) {
+            .hero-content h1 {
+                font-size: 4rem;
+            }
+            .hero-content p {
+                font-size: 1.2rem;
+            }
+            .nav-links {
+                display: none; /* Ocultar en móviles, se puede añadir un menú hamburguesa */
+            }
+            nav {
+                justify-content: center;
+            }
+            .logo {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 3rem;
+            }
+            .hero-content p {
+                font-size: 1rem;
+            }
+            .section-title {
+                font-size: 2.5rem;
+            }
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+            .product-info h3 {
+                font-size: 1.5rem;
+            }
+            .product-info .price {
+                font-size: 1.2rem;
+            }
+            .btn-primary, .btn-buy-whatsapp {
+                padding: 0.8rem 1.8rem;
+                font-size: 0.9rem;
+            }
+            .whatsapp-float {
+                width: 50px;
+                height: 50px;
+                font-size: 1.7rem;
+                bottom: 20px;
+                right: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            .hero-content p {
+                font-size: 0.9rem;
+            }
+            .section-title {
+                font-size: 2rem;
+            }
+            .product-card {
+                padding: 1rem;
+            }
+            .product-info {
+                padding: 1.5rem 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <nav>
+                <a href="#" class="logo">PILAR</a>
+                <ul class="nav-links">
+                    <li><a href="#hero">Inicio</a></li>
+                    <li><a href="#productos">Colección</a></li>
+                    <li><a href="#nosotros">Acerca de</a></li>
+                    <li><a href="#contacto">Contacto</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section id="hero" class="hero">
+        <div class="hero-content">
+            <h1>PILAR: La Elegancia en tu Muñeca</h1>
+            <p>Relojes que fusionan arte, precisión y pasión. Descubre la maestría relojera.</p>
+            <a href="#productos" class="btn-primary">Ver Colección</a>
+        </div>
+    </section>
+
+    <section id="productos" class="products">
+        <div class="container">
+            <h2 class="section-title">Nuestra Colección Exclusiva</h2>
+            <div class="products-grid">
+                <div class="product-card">
+                    <img src="reloj1.jpg" alt="Reloj Midnight Gold" class="product-image">
+                    <div class="product-info">
+                        <h3>Midnight Gold</h3>
+                        <p class="price">95 Bs.</p>
+                        <a href="https://walink.co/svraqm?text=Hola PILAR, me interesa el modelo Midnight Gold de 95 Bs. ¿Tienen disponibilidad?" target="_blank" class="btn-buy-whatsapp">
+                            <i class="fab fa-whatsapp"></i> Comprar por WhatsApp
+                        </a>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <img src="reloj5.jpg" alt="Reloj Rose Petal Edition" class="product-image">
+                    <div class="product-info">
+                        <h3>Rose Petal Edition</h3>
+                        <p class="price">85 Bs.</p>
+                        <a href="https://walink.co/svraqm?text=Hola PILAR, me interesa el modelo Rose Petal Edition de 85 Bs. ¿Tienen disponibilidad?" target="_blank" class="btn-buy-whatsapp">
+                            <i class="fab fa-whatsapp"></i> Comprar por WhatsApp
+                        </a>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <img src="reloj3.jpg" alt="Set Stellar Gift Box" class="product-image">
+                    <div class="product-info">
+                        <h3>Stellar Gift Box</h3>
+                        <p class="price">100 Bs.</p>
+                        <a href="https://walink.co/svraqm?text=Hola PILAR, me interesa el Set Stellar Gift Box de 100 Bs. ¿Tienen disponibilidad?" target="_blank" class="btn-buy-whatsapp">
+                            <i class="fab fa-whatsapp"></i> Comprar por WhatsApp
+                        </a>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <img src="reloj8.jpg" alt="Reloj Elegant Obsidian" class="product-image">
+                    <div class="product-info">
+                        <h3>Elegant Obsidian</h3>
+                        <p class="price">90 Bs.</p>
+                        <a href="https://walink.co/svraqm?text=Hola PILAR, me interesa el modelo Elegant Obsidian de 90 Bs. ¿Tienen disponibilidad?" target="_blank" class="btn-buy-whatsapp">
+                            <i class="fab fa-whatsapp"></i> Comprar por WhatsApp
+                        </a>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <img src="reloj4.jpg" alt="Reloj Glimmering Gold" class="product-image">
+                    <div class="product-info">
+                        <h3>Glimmering Gold</h3>
+                        <p class="price">98 Bs.</p>
+                        <a href="https://walink.co/svraqm?text=Hola PILAR, me interesa el modelo Glimmering Gold de 98 Bs. ¿Tienen disponibilidad?" target="_blank" class="btn-buy-whatsapp">
+                            <i class="fab fa-whatsapp"></i> Comprar por WhatsApp
+                        </a>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <img src="reloj10.jpg" alt="Reloj Modern Chrono Brown" class="product-image">
+                    <div class="product-info">
+                        <h3>Modern Chrono Brown</h3>
+                        <p class="price">88 Bs.</p>
+                        <a href="https://walink.co/svraqm?text=Hola PILAR, me interesa el modelo Modern Chrono Brown de 88 Bs. ¿Tienen disponibilidad?" target="_blank" class="btn-buy-whatsapp">
+                            <i class="fab fa-whatsapp"></i> Comprar por WhatsApp
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="nosotros" class="about-us">
+        <div class="container">
+            <h2 class="section-title">¿Por Qué Elegir PILAR?</h2>
+            <div class="about-us-grid">
+                <div class="about-item">
+                    <i class="fas fa-gem"></i>
+                    <h3>Calidad Inigualable</h3>
+                    <p>Cada reloj PILAR es una obra de arte, meticulosamente elaborado con materiales premium y precisión suiza.</p>
+                </div>
+                <div class="about-item">
+                    <i class="fas fa-shield-alt"></i>
+                    <h3>Garantía de Por Vida</h3>
+                    <p>Confiamos plenamente en la durabilidad de nuestros relojes. Tu inversión está protegida.</p>
+                </div>
+                <div class="about-item">
+                    <i class="fas fa-shipping-fast"></i>
+                    <h3>Envío Seguro</h3>
+                    <p>Recibe tu reloj PILAR en la puerta de tu casa, con un empaque diseñado para la máxima protección.</p>
+                </div>
+                <div class="about-item">
+                    <i class="fas fa-handshake"></i>
+                    <h3>Atención Personalizada</h3>
+                    <p>Nuestro equipo está listo para ayudarte en cada paso, desde la elección hasta el soporte post-venta.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contacto">
+        <div class="container">
+            <p>&copy; 2023 PILAR. Todos los derechos reservados.</p>
+            <p>Diseño y Elegancia para tu Tiempo.</p>
+            <div class="social-links">
+                <a href="#" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="https://walink.co/svraqm" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <a href="https://walink.co/svraqm" class="whatsapp-float" target="_blank" title="Chatea con nosotros en WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script>
+        // Función para animar el scroll a secciones
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Opcional: Para animar la aparición de secciones al hacer scroll
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.2 // Cuando el 20% de la sección es visible
+        };
+
+        const sectionObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'slideInUp 1s ease-out forwards';
+                    entry.target.style.opacity = '1';
+                    observer.unobserve(entry.target); // Dejar de observar una vez animado
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('section').forEach(section => {
+            // No animar el hero porque ya tiene su propia animación
+            if (!section.classList.contains('hero')) {
+                section.style.opacity = '0'; // Inicialmente invisible
+                sectionObserver.observe(section);
+            }
+        });
+
+    </script>
+</body>
+</html>
+```http://googleusercontent.com/image_generation_content/0
